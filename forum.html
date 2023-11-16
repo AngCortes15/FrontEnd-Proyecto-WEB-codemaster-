@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Codemaster</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body style="background-color: #f5f6f7">
+        <header>
+            <nav
+                class="navbar navbar-expand-sm shadow"
+                style="background-color: white"
+            >
+                <div class="container w-100">
+                    <a class="navbar-brand" href="#"
+                        ><div class="fw-bold fs-3">codemaster</div></a
+                    >
+                    <button
+                        class="navbar-toggler d-lg-none"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavId"
+                        aria-controls="collapsibleNavId"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="collapse navbar-collapse w-100"
+                        id="collapsibleNavId"
+                    >
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link active fs-5 fw-light"
+                                    href="#"
+                                    aria-current="page"
+                                    >Foro</a
+                                >
+                            </li>
+
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link active fs-5 fw-light"
+                                    href="#"
+                                    >Nosotros</a
+                                >
+                            </li>
+                        </ul>
+                        <div
+                            class="d-flex my-3 align-items-center mx-sm-2 fs-5 fw-light"
+                        >
+                            <i class="fa-solid fa-user me-1"> </i> Ingresar
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="container mt-5">
+                <!-- <h1 class="mb-4">Preguntas a la comunidad</h1> -->
+
+                <!-- Question Form -->
+                <div class="card mb-4 border-light shadow">
+                    <div class="card-body">
+                        <h5 class="card-title">Crea una nueva pregunta</h5>
+                        <form>
+                            <div class="mb-3">
+                                <label for="questionTitle" class="form-label"
+                                    >Título</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="questionTitle"
+                                    placeholder="Agrega un título a tu pregunta. Ej: ¿Cómo declaro una variable?"
+                                />
+                            </div>
+                            <div class="mb-3">
+                                <label for="questionContent" class="form-label"
+                                    >Pregunta</label
+                                >
+                                <textarea
+                                    class="form-control"
+                                    id="questionContent"
+                                    rows="4"
+                                    placeholder="Agrega aquí el contexto de tu pregunta. Debe ayudar a la comunidad a entender tu problema."
+                                ></textarea>
+                            </div>
+                            <button
+                                type="submit"
+                                class="btn btn-primary"
+                                style="
+                                    background-color: #5b6de1bf;
+                                    border-color: white;
+                                "
+                            >
+                                Enviar
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <h1 class="mb-4">Preguntas a la comunidad</h1>
+                <div class="card border-light shadow-lg">
+                    <div class="card-body">
+                        <h5 class="card-title">Preguntas recientes</h5>
+                        <ul class="list-group">
+                            <li
+                                class="list-group-item border-light shadow-sm mb-3"
+                            >
+                                <h6 class="mb-0">
+                                    Cómo puedo declarar una variable global?
+                                </h6>
+                                <p class="mb-0">
+                                    Estoy tratando de crear una variable global
+                                    pero al momento de leer el valor es
+                                    undefined
+                                </p>
+                                <small class="text-muted"
+                                    >Creado por Daniel Rios</small
+                                >
+                            </li>
+                            <li
+                                class="list-group-item border-light shadow-sm mb-3"
+                            >
+                                <h6 class="mb-0">
+                                    Cómo configuraron prettier para proyectos de
+                                    JS?
+                                </h6>
+                                <p class="mb-0">
+                                    Recuerdo que en la clase lo mencionaron,
+                                    pero no recuerdo cómo se hace :(
+                                </p>
+                                <small class="text-muted"
+                                    >Creado por Mr Java</small
+                                >
+                            </li>
+                            <li
+                                class="list-group-item border-light shadow-sm mb-3"
+                            >
+                                <h6 class="mb-0">
+                                    Es lo mismo una variable y una constante?
+                                </h6>
+                                <p class="mb-0">
+                                    Ayuda por favor, no entiendo la diferencia
+                                </p>
+                                <small class="text-muted"
+                                    >Creado por Mark Zuckerberg</small
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>
