@@ -1,11 +1,11 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <title>Home</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
 
     <!-- Bootstrap CSS -->
     <!-- Bootstrap CSS v5.2.1 -->
@@ -41,12 +41,28 @@
             padding-top: 100px;
             /* margin-left: 40px; */
         }
+
+        textarea {
+            width: 80%;
+            height: 200px;
+        }
+
+        .btnSandBox {
+            margin-top: 10px;
+            cursor: pointer;
+        }
+
+        iframe {
+            width: 70%;
+            height: 300px;
+            /* border: 1px solid #ddd; */
+        }
     </style>
 </head>
 
 <body>
     <header>
-        <nav class="topnavbar navbar navbar-expand-sm shadow" style="background-color: white; position: fixed;">
+        <nav class="topnavbar navbar navbar-expand-sm shadow" style="background-color: white; position: fixed">
             <div class="container w-100">
                 <a class="navbar-brand" href="./index.html">
                     <div class="fw-bold fs-3">codemaster</div>
@@ -67,14 +83,15 @@
                         </li>
                     </ul>
                     <div class="d-flex my-3 align-items-center mx-sm-2 fs-5 fw-light">
-                        <i class="fa-solid fa-user me-1"> </i> <a href="./userProfile.html">Ingresar</a>
+                        <i class="fa-solid fa-user me-1"> </i>
+                        <a href="./userProfile.html" style="text-decoration: none; color: black;"><strong>Ingresar</strong></a>
                     </div>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
-        <nav class="navbarderecha navbar navbar-dark bg-dark flex-column ">
+        <nav class="navbarderecha navbar navbar-dark bg-dark flex-column">
             <ul class="navbar-nav">
                 <li class="nav-item nav-itemsss">
                     <a class="nav-link" href="#">Basic Sintaxis</a>
@@ -93,90 +110,128 @@
                 </li>
             </ul>
         </nav>
-        <div class="cuerpo container ms-5 rounded"> <!--Contenedor del cuerpo-->
-            <div class="container rounded bg-light" style="width: 99%;">
+        <div class="cuerpo container ms-5 rounded">
+            <!--Contenedor del cuerpo-->
+            <div class="container rounded bg-light" style="width: 99%">
                 <!--A partir de aqui inicia el contenido del cuerpo-->
-                <h1 style="text-align: center; font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">Learn to code with JavaScript</h1>
-                <p style="font-size: 20px; font-family:Arial, Helvetica, sans-serif; line-height: 1.4;">The decision to learn JavaScript is a strategic one. It's not just about acquiring a language; it's about gaining a versatile set of skills that are applicable across the spectrum of web development. Whether you're starting your coding journey or expanding your skill set, JavaScript is a language that offers a pathway to creativity and innovation in the digital world.</p>
-                <div class="how-section1">
-                    <div class="row">
-                        <div class="col-md-6 how-img">
-                            <img src="https://image.ibb.co/dDW27U/Work_Section2_freelance_img1.png"
-                                class="rounded-circle img-fluid" alt="" />
+                <h1 style="
+              text-align: center;
+              font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial,
+                sans-serif;
+            ">
+                    Learn to code with JavaScript
+                </h1>
+                <p style="
+              font-size: 20px;
+              font-family: Arial, Helvetica, sans-serif;
+              line-height: 1.4;
+            ">
+                    The decision to learn JavaScript is a strategic one. It's not just
+                    about acquiring a language; it's about gaining a versatile set of
+                    skills that are applicable across the spectrum of web development.
+                    Whether you're starting your coding journey or expanding your skill
+                    set, JavaScript is a language that offers a pathway to creativity
+                    and innovation in the digital world.
+                </p>
+                <div id="cuerpo">
+                    <div id="cuerpo1" class="how-section1">
+                        <div class="row">
+                            <div class="col-md-6 how-img">
+                                <img src="https://image.ibb.co/dDW27U/Work_Section2_freelance_img1.png"
+                                    class="rounded-circle img-fluid" alt="" />
+                            </div>
+                            <div class="col-md-6">
+                                <h4 class="subheading">Fundamental Programming Language</h4>
+                                <p class="text-muted">
+                                    JavaScript is at the core of web development. It's a
+                                    versatile, high-level programming language that runs in the
+                                    browser, making it an essential skill for web developers. As a
+                                    language, it's easy to learn for beginners yet powerful enough
+                                    for complex applications. Learning JavaScript sets a strong
+                                    foundation not only for web development but also for
+                                    understanding programming concepts that apply across different
+                                    languages. This versatility makes it an excellent starting
+                                    point for those entering the world of coding.
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <h4 class="subheading">Fundamental Programming Language</h4>
-                            <p class="text-muted">JavaScript is at the core of web development. It's a versatile,
-                                high-level programming language that runs in the browser, making it an essential skill
-                                for web developers. As a language, it's easy to learn for beginners yet powerful enough
-                                for complex applications.
-                                Learning JavaScript sets a strong foundation not only for web development but also for
-                                understanding programming concepts that apply across different languages. This
-                                versatility makes it an excellent starting point for those entering the world of coding.
-                            </p>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>GEnhances Web Page Interactivity</h4>
+                                <!-- <h4 class="subheading">aaaa</h4> -->
+                                <p class="text-muted">
+                                    One of JavaScript's standout features is its ability to make
+                                    web pages interactive. By manipulating the Document Object
+                                    Model (DOM), JavaScript can dynamically change content,
+                                    respond to user actions like clicks and input, and create a
+                                    seamless, engaging user experience. This capability is what
+                                    enables modern websites to feel dynamic and responsive,
+                                    providing users with more than just static information.
+                                    Understanding JavaScript empowers developers to bring their
+                                    designs to life and create user interfaces that go beyond
+                                    simple presentation.
+                                </p>
+                            </div>
+                            <div class="col-md-6 how-img">
+                                <img src="https://image.ibb.co/cHgKnU/Work_Section2_freelance_img2.png"
+                                    class="rounded-circle img-fluid" alt="" />
+                            </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>GEnhances Web Page Interactivity</h4>
-                            <!-- <h4 class="subheading">aaaa</h4> -->
-                            <p class="text-muted">One of JavaScript's standout features is its ability to make web pages
-                                interactive. By manipulating the Document Object Model (DOM), JavaScript can dynamically
-                                change content, respond to user actions like clicks and input, and create a seamless,
-                                engaging user experience.
-                                This capability is what enables modern websites to feel dynamic and responsive,
-                                providing users with more than just static information. Understanding JavaScript
-                                empowers developers to bring their designs to life and create user interfaces that go
-                                beyond simple presentation.</p>
+                        <div class="row">
+                            <div class="col-md-6 how-img">
+                                <img src="https://image.ibb.co/gQ9iE9/Work_Section2_freelance_img4.png"
+                                    class="rounded-circle img-fluid" alt="" />
+                            </div>
+                            <div class="col-md-6">
+                                <h4>Vast Ecosystem and Community</h4>
+                                <!-- <h4 class="subheading">With GetLance, you have the freedom and flexibility to control when, where, and how you work. Each project includes an online workspace shared by you and your client, allowing you to:</h4> -->
+                                <p class="text-muted">
+                                    JavaScript's popularity has led to the development of a vast
+                                    ecosystem of libraries and frameworks. Libraries like jQuery
+                                    simplify common tasks, while frameworks like React, Angular,
+                                    and Vue.js offer structured approaches to building complex web
+                                    applications. The JavaScript community is known for its
+                                    vibrancy and support. Countless resources, tutorials, and
+                                    forums are available for learners. This strong community is a
+                                    valuable asset, providing insights, solutions to common
+                                    problems, and a collaborative environment for developers of
+                                    all levels.
+                                </p>
+                            </div>
                         </div>
-                        <div class="col-md-6 how-img">
-                            <img src="https://image.ibb.co/cHgKnU/Work_Section2_freelance_img2.png"
-                                class="rounded-circle img-fluid" alt="" />
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 how-img">
-                            <img src="https://image.ibb.co/gQ9iE9/Work_Section2_freelance_img4.png"
-                                class="rounded-circle img-fluid" alt="" />
-                        </div>
-                        <div class="col-md-6">
-                            <h4>Vast Ecosystem and Community</h4>
-                            <!-- <h4 class="subheading">With GetLance, you have the freedom and flexibility to control when, where, and how you work. Each project includes an online workspace shared by you and your client, allowing you to:</h4> -->
-                            <p class="text-muted">JavaScript's popularity has led to the development of a vast ecosystem
-                                of libraries and frameworks. Libraries like jQuery simplify common tasks, while
-                                frameworks like React, Angular, and Vue.js offer structured approaches to building
-                                complex web applications.
-                                The JavaScript community is known for its vibrancy and support. Countless resources,
-                                tutorials, and forums are available for learners. This strong community is a valuable
-                                asset, providing insights, solutions to common problems, and a collaborative environment
-                                for developers of all levels.</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4>Building Complex Applications</h4>
-                            <!-- <h4 class="subheading">All projects include GetLance Payment Protection — helping ensure that you get paid for all work successfully completed through the freelancing website.</h4> -->
-                            <p class="text-muted">JavaScript's evolution has extended its role beyond the frontend. With
-                                the advent of Node.js, JavaScript can now be used for server-side development. This
-                                full-stack capability allows developers to create end-to-end applications using a single
-                                programming language.
-                                Full-stack JavaScript development is not only practical but also aligns with industry
-                                trends. Learning JavaScript in-depth opens doors to building diverse applications, from
-                                small interactive websites to large-scale, data-intensive systems. It's a valuable skill
-                                set for aspiring developers who want to work on a variety of projects.</p>
-                        </div>
-                        <div class="col-md-6 how-img">
-                            <img src="https://image.ibb.co/ctSLu9/Work_Section2_freelance_img3.png"
-                                class="rounded-circle img-fluid" alt="" />
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h4>Building Complex Applications</h4>
+                                <!-- <h4 class="subheading">All projects include GetLance Payment Protection — helping ensure that you get paid for all work successfully completed through the freelancing website.</h4> -->
+                                <p class="text-muted">
+                                    JavaScript's evolution has extended its role beyond the
+                                    frontend. With the advent of Node.js, JavaScript can now be
+                                    used for server-side development. This full-stack capability
+                                    allows developers to create end-to-end applications using a
+                                    single programming language. Full-stack JavaScript development
+                                    is not only practical but also aligns with industry trends.
+                                    Learning JavaScript in-depth opens doors to building diverse
+                                    applications, from small interactive websites to large-scale,
+                                    data-intensive systems. It's a valuable skill set for aspiring
+                                    developers who want to work on a variety of projects.
+                                </p>
+                            </div>
+                            <div class="col-md-6 how-img">
+                                <img src="https://image.ibb.co/ctSLu9/Work_Section2_freelance_img3.png"
+                                    class="rounded-circle img-fluid" alt="" />
+                            </div>
                         </div>
                     </div>
                 </div>
+                <h4>Code example</h4>
+                <iframe src="./executeCode.html" id="codeRunnerFrame" width="100%" height="500px" frameborder="0"></iframe><br>
+                <button><a href="./executeCode.html" target="_blank" style="text-decoration: none; color: inherit;">Probar</a></button>
             </div>
-
-
         </div>
     </div>
     <!-- Optional JavaScript -->
+    <!-- <script src="./JS/sandBoxCode.js"></script> -->
+    <script src="./JS/loadInfo.js"></script>
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
         integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
