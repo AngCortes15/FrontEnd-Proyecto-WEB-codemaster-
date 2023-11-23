@@ -8,6 +8,10 @@
             name="viewport"
             content="width=device-width, initial-scale=1, shrink-to-fit=no"
         />
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+        />
 
         <!-- Bootstrap CSS v5.2.1 -->
         <link
@@ -124,8 +128,7 @@
 
                 const button = document.createElement('button');
                 button.classList.add('btn', 'btn-primary');
-                button.style =
-                    'background-color: #5b6de1bf;border-color: white;';
+                button.style = 'background-color: #d1cfcf;border-color: white;';
                 button.type = 'submit';
                 button.textContent = 'Enviar';
 
@@ -169,7 +172,7 @@
 
                 data.comments.forEach((comment) => {
                     const commentItem = document.createElement('li');
-                    commentItem.id = 'card-' + comment._id;
+                    commentItem.id = 'card-' + comment.id;
                     commentItem.classList.add(
                         'list-group-item',
                         'd-flex',
@@ -181,6 +184,7 @@
                     );
 
                     const commentBody = document.createElement('div');
+                    commentBody.id = 'cardBody';
                     commentBody.classList.add('w-75');
 
                     const commentCreatedBy = document.createElement('small');
@@ -193,6 +197,13 @@
                     commentDescription.textContent = comment.description;
 
                     const votesContainer = document.createElement('div');
+                    votesContainer.classList.add(
+                        'd-flex',
+                        'flex-column',
+                        'justify-content-end',
+                        'align-items-end',
+                        'w-25'
+                    );
 
                     const commentVotes = document.createElement('span');
                     commentVotes.classList.add('text-muted', 'h5');
@@ -201,13 +212,38 @@
                     const innerHr = document.createElement('hr');
                     innerHr.classList.add('hr');
 
+                    const upvoteButton = document.createElement('button');
+                    upvoteButton.classList.add('btn', 'btn-primary');
+                    upvoteButton.style =
+                        'background-color: #d1cfcf;border-color: white;';
+                    upvoteButton.type = 'submit';
+                    // upvoteButton.textContent = 'Votar';
+                    // Add up icon
+                    const upIcon = document.createElement('i');
+                    upIcon.classList.add('fa', 'fa-chevron-up');
+                    upvoteButton.appendChild(upIcon);
+
+                    const downvoteButton = document.createElement('button');
+                    downvoteButton.classList.add('btn', 'btn-primary');
+                    downvoteButton.style =
+                        'background-color: #d1cfcf;border-color: white;';
+                    downvoteButton.type = 'submit';
+                    // downvoteButton.textContent = 'Votar';
+
+                    // Add down icon
+                    const downIcon = document.createElement('i');
+                    downIcon.classList.add('fa', 'fa-chevron-down');
+                    downvoteButton.appendChild(downIcon);
+
                     commentBody.appendChild(commentCreatedBy);
                     commentBody.appendChild(commentDescription);
 
                     votesContainer.appendChild(commentVotes);
+                    votesContainer.appendChild(upvoteButton);
+                    votesContainer.appendChild(downvoteButton);
 
                     commentItem.appendChild(commentBody);
-                    commentItem.appendChild(commentVotes);
+                    commentItem.appendChild(votesContainer); //
 
                     answersCardBody.appendChild(commentItem);
                     answersCardBody.appendChild(innerHr);
