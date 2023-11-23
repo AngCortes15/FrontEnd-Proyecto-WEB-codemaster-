@@ -37,15 +37,22 @@
                         </p>
                         <div class="container">
                             Usuario
-                            <input type="text" class="form-control mt-1 mb-2" />
+                            <input
+                                id="username"
+                                type="text"
+                                class="form-control mt-1 mb-2"
+                            />
                             Contraseña
                             <input
+                                id="password"
                                 type="password"
                                 class="form-control mt-1 mb-2"
                             />
                         </div>
                         <div class="container">
                             <button
+                                id="loginButton"
+                                onclick="login(event)"
                                 class="btn w-100 mt-3"
                                 style="
                                     background-color: #5b6de1bf;
@@ -73,22 +80,39 @@
                     <div id="registerForm" style="display: none">
                         <div class="container">
                             Usuario
-                            <input type="text" class="form-control mt-1 mb-2" />
+                            <input
+                                id="rusername"
+                                type="text"
+                                class="form-control mt-1 mb-2"
+                            />
                             Contraseña
                             <input
+                                id="rpassword"
                                 type="password"
                                 class="form-control mt-1 mb-2"
                             />
                             Nombre
-                            <input type="text" class="form-control mt-1 mb-2" />
+                            <input
+                                id="name"
+                                type="text"
+                                class="form-control mt-1 mb-2"
+                            />
+                            Apellido
+                            <input
+                                id="lastName"
+                                type="text"
+                                class="form-control mt-1 mb-2"
+                            />
                             Email
                             <input
+                                id="email"
                                 type="email"
                                 class="form-control mt-1 mb-2"
                             />
                         </div>
                         <div class="container">
                             <button
+                                onclick="register(event)"
                                 class="btn w-100 mt-3"
                                 style="
                                     background-color: #5b6de1bf;
@@ -117,19 +141,114 @@
             </div>
         </div>
 
+        <!-- Script to login -->
+        <script>
+            function login(e) {
+                e.preventDefault();
+
+                const username = document.getElementById('username').value;
+                const password = document.getElementById('password').value;
+
+                // Codifica el usuario y la contraseña en formato Basic
+                const base64Credentials = btoa(`${username}:${password}`);
+
+                // Opciones de la solicitud POST
+                const requestOptions = {
+                    method: 'POST',
+                    headers: {
+                        Authorization: `Basic ${base64Credentials}`,
+                        // Puedes agregar otros encabezados si es necesario
+                    },
+                };
+
+                // Realiza la solicitud POST al endpoint
+                fetch('http://localhost:3000/api/auth/token', requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('La solicitud no fue exitosa');
+                        }
+                        return response.json(); // Parsea la respuesta JSON
+                    })
+                    .then((data) => {
+                        // Save token in sesion storage
+                        sessionStorage.setItem('token', data.token);
+
+                        // Redirect to home
+                        window.location.href = './index.html';
+                    })
+                    .catch((error) => {
+                        // Maneja los errores de la solicitud
+                        console.error('Error en la solicitud:', error);
+                    });
+            }
+
+            function register(e) {
+                e.preventDefault();
+
+                const username = document.getElementById('rusername').value;
+                const password = document.getElementById('rpassword').value;
+                const name = document.getElementById('name').value;
+                const lastName = document.getElementById('lastName').value;
+
+                const email = document.getElementById('email').value;
+                const body = {
+                    username,
+                    password,
+                    name,
+                    email,
+                    lastName,
+                };
+
+                console.log(username, password, name, email);
+
+                // Opciones de la solicitud POST
+                const requestOptions = {
+                    method: 'POST',
+                    body: JSON.stringify(body),
+                };
+
+                // Realiza la solicitud POST al endpoint
+                fetch('http://localhost:3000/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(body),
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('La solicitud no fue exitosa');
+                        }
+                        return response.json(); // Parsea la respuesta JSON
+                    })
+                    .then((data) => {
+                        // Save token in sesion storage
+                        sessionStorage.setItem('token', data.token);
+                        sessionStorage.setItem('user', data.createdUser);
+
+                        // Redirect to home
+                        window.location.href = './index.html';
+                    })
+                    .catch((error) => {
+                        // Maneja los errores de la solicitud
+                        console.error('Error en la solicitud:', error);
+                    });
+            }
+        </script>
+
         <!-- Script to change between forms -->
         <script>
-            const registerButton =
+            const registerButtonLink =
                 document.getElementById('registerButtonLink');
-            const loginButton = document.getElementById('loginButtonLink');
+            const loginButtonLink = document.getElementById('loginButtonLink');
             const loginForm = document.getElementById('loginForm');
             const registerForm = document.getElementById('registerForm');
 
-            registerButton.addEventListener('click', () => {
+            registerButtonLink.addEventListener('click', () => {
                 registerForm.style.display = 'block';
                 loginForm.style.display = 'none';
             });
-            loginButton.addEventListener('click', () => {
+            loginButtonLink.addEventListener('click', () => {
                 loginForm.style.display = 'block';
                 registerForm.style.display = 'none';
             });
