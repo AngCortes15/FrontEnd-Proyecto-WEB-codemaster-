@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>Codemaster</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+            crossorigin="anonymous"
+        />
+    </head>
+
+    <body style="background-color: #f5f6f7">
+        <header>
+            <nav
+                class="navbar navbar-expand-sm shadow"
+                style="background-color: white"
+            >
+                <div class="container w-100">
+                    <a class="navbar-brand" href="./index.html"
+                        ><div class="fw-bold fs-3">codemaster</div></a
+                    >
+                    <button
+                        class="navbar-toggler d-lg-none"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavId"
+                        aria-controls="collapsibleNavId"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="collapse navbar-collapse w-100"
+                        id="collapsibleNavId"
+                    >
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link active fs-5 fw-light"
+                                    href="./forum.html"
+                                    aria-current="page"
+                                    >Foro</a
+                                >
+                            </li>
+
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link active fs-5 fw-light"
+                                    href="#"
+                                    >Nosotros</a
+                                >
+                            </li>
+                        </ul>
+                        <div
+                            class="d-flex my-3 align-items-center mx-sm-2 fs-5 fw-light"
+                        >
+                            <i class="fa-solid fa-user me-1"> </i>
+                            <a id="navUserText" href="./userProfile.html"
+                                >Ingresar</a
+                            >
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <div class="container mt-5" id="questionContainer"></div>
+        </main>
+
+        <script>
+            // Function to render question details card with comments
+            function renderQuestionDetails(data) {
+                const questionContainer =
+                    document.getElementById('questionContainer');
+
+                const questionCard = document.createElement('div');
+                questionCard.classList.add(
+                    'card',
+                    'mb-4',
+                    'border-light',
+                    'shadow'
+                );
+
+                const cardBody = document.createElement('div');
+                cardBody.classList.add('card-body');
+
+                const titleDiv = document.createElement('div');
+                titleDiv.classList.add(
+                    'd-flex',
+                    'justify-content-between',
+                    'align-items-center'
+                );
+
+                const cardTitle = document.createElement('h5');
+                cardTitle.classList.add('card-title');
+                cardTitle.textContent = data.title;
+
+                const votesSpan = document.createElement('span');
+                votesSpan.classList.add('text-muted', 'h5');
+                votesSpan.textContent = data.votes + ' votos';
+
+                titleDiv.appendChild(cardTitle);
+                titleDiv.appendChild(votesSpan);
+
+                const cardDescription = document.createElement('p');
+                cardDescription.textContent = data.description;
+
+                const hr = document.createElement('hr');
+                hr.classList.add('hr');
+
+                const form = document.createElement('form');
+                form.classList.add(
+                    'd-flex',
+                    'justify-content-between',
+                    'align-items-center'
+                );
+
+                const input = document.createElement('input');
+                input.classList.add('form-control', 'w-80', 'me-2');
+                input.type = 'text';
+                input.placeholder = 'Escribe tu respuesta';
+
+                const button = document.createElement('button');
+                button.classList.add('btn', 'btn-primary');
+                button.style =
+                    'background-color: #5b6de1bf;border-color: white;';
+                button.type = 'submit';
+                button.textContent = 'Enviar';
+
+                form.appendChild(input);
+                form.appendChild(button);
+
+                const createdBy = document.createElement('small');
+                createdBy.classList.add('text-muted');
+                createdBy.textContent = 'Created by: ' + data.createdBy;
+
+                const commentsList = document.createElement('ul');
+                commentsList.classList.add('list-group');
+
+                cardBody.appendChild(titleDiv);
+                cardBody.appendChild(cardDescription);
+                cardBody.appendChild(hr);
+                cardBody.appendChild(form);
+
+                cardBody.appendChild(commentsList);
+                questionCard.append(cardBody);
+                questionContainer.appendChild(questionCard);
+
+                const answersContainer = document.createElement('div');
+                answersContainer.classList.add(
+                    'card',
+                    'border-light',
+                    'shadow-lg'
+                );
+
+                const answersCardBody = document.createElement('div');
+                answersCardBody.classList.add('card-body');
+
+                const answersCardTitle = document.createElement('h5');
+                answersCardTitle.classList.add('card-title');
+                answersCardTitle.textContent = 'Respuestas';
+
+                const answersList = document.createElement('ul');
+                answersList.classList.add('list-group');
+
+                answersCardBody.appendChild(answersCardTitle);
+
+                data.comments.forEach((comment) => {
+                    const commentItem = document.createElement('li');
+                    commentItem.id = 'card-' + comment._id;
+                    commentItem.classList.add(
+                        'list-group-item',
+                        'd-flex',
+                        'justify-content-between',
+                        'align-items-center',
+                        'border-0',
+                        'p-0',
+                        'pb-0'
+                    );
+
+                    const commentBody = document.createElement('div');
+                    commentBody.classList.add('w-75');
+
+                    const commentCreatedBy = document.createElement('small');
+                    commentCreatedBy.classList.add('text-muted');
+                    commentCreatedBy.textContent = comment.createdBy;
+
+                    const commentDescription = document.createElement('p');
+                    commentDescription.id = 'cardDescription';
+                    commentDescription.classList.add('mb-0');
+                    commentDescription.textContent = comment.description;
+
+                    const votesContainer = document.createElement('div');
+
+                    const commentVotes = document.createElement('span');
+                    commentVotes.classList.add('text-muted', 'h5');
+                    commentVotes.textContent = comment.votes + ' votos';
+
+                    const innerHr = document.createElement('hr');
+                    innerHr.classList.add('hr');
+
+                    commentBody.appendChild(commentCreatedBy);
+                    commentBody.appendChild(commentDescription);
+
+                    votesContainer.appendChild(commentVotes);
+
+                    commentItem.appendChild(commentBody);
+                    commentItem.appendChild(commentVotes);
+
+                    answersCardBody.appendChild(commentItem);
+                    answersCardBody.appendChild(innerHr);
+                });
+
+                questionContainer.appendChild(answersContainer);
+                answersContainer.appendChild(answersCardBody);
+                answersCardBody.appendChild(answersList);
+            }
+            // Function to fetch question data from the API
+            function fetchQuestionData() {
+                fetch('http://localhost:3000/api/forum/question/1')
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('La solicitud no fue exitosa');
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        renderQuestionDetails(data);
+                    })
+                    .catch((error) => {
+                        console.error('Error en la solicitud:', error);
+                    });
+            }
+
+            // Call the function to fetch and render question data when the page loads
+            document.addEventListener('DOMContentLoaded', function () {
+                fetchQuestionData();
+            });
+        </script>
+
+        <script>
+            const navUserText = document.getElementById('navUserText');
+            const token = sessionStorage.getItem('token');
+            if (token) {
+                navUserText.innerText = 'Perfil';
+                navUserText.href = './userProfile.html';
+            } else {
+                navUserText.innerText = 'Ingresar';
+                navUserText.href = './login.html';
+            }
+        </script>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+            crossorigin="anonymous"
+        ></script>
+    </body>
+</html>

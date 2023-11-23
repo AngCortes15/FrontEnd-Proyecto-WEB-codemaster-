@@ -1,83 +1,153 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <title>Codemaster</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+        <!-- Añade esto en el encabezado del HTML -->
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+            integrity="sha384-rB9jBQ9CtkoNqH4j1z5LCTpmhIi7aRM41ddZ5HTAPgoP4RziV5kC5SQQzK3gVIoS"
+            crossorigin="anonymous"
+        />
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+            crossorigin="anonymous"
+        />
+    </head>
 
-<head>
-    <title>Codemaster</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-    <!-- Añade esto en el encabezado del HTML -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
-        integrity="sha384-rB9jBQ9CtkoNqH4j1z5LCTpmhIi7aRM41ddZ5HTAPgoP4RziV5kC5SQQzK3gVIoS" crossorigin="anonymous">
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
-</head>
+    <body style="background-color: #f5f6f7">
+        <header>
+            <nav
+                class="navbar navbar-expand-sm shadow"
+                style="background-color: white"
+            >
+                <div class="container w-100">
+                    <a class="navbar-brand" href="./index.html">
+                        <div class="fw-bold fs-3">codemaster</div>
+                    </a>
+                    <button
+                        class="navbar-toggler d-lg-none"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavId"
+                        aria-controls="collapsibleNavId"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="collapse navbar-collapse w-100"
+                        id="collapsibleNavId"
+                    >
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link active fs-5 fw-light"
+                                    href="#"
+                                    aria-current="page"
+                                    >Foro</a
+                                >
+                            </li>
 
-<body style="background-color: #f5f6f7">
-    <header>
-        <nav class="navbar navbar-expand-sm shadow" style="background-color: white">
-            <div class="container w-100">
-                <a class="navbar-brand" href="./index.html">
-                    <div class="fw-bold fs-3">codemaster</div>
-                </a>
-                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse w-100" id="collapsibleNavId">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active fs-5 fw-light" href="#" aria-current="page">Foro</a>
-                        </li>
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link active fs-5 fw-light"
+                                    href="#"
+                                    >Nosotros</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <main>
+            <i class="fa fa-android" aria-hidden="true"></i>
+            <div class="container mt-5">
+                <!-- <h1 class="mb-4">Preguntas a la comunidad</h1> -->
 
-                        <li class="nav-item">
-                            <a class="nav-link active fs-5 fw-light" href="#">Nosotros</a>
-                        </li>
-                    </ul>
-                    <div class="d-flex my-3 align-items-center mx-sm-2 fs-5 fw-light">
-                        <i class="fa-solid fa-user me-1"> </i> Ingresar
+                <!-- Question Form -->
+                <div class="card mb-4 border-light shadow">
+                    <div
+                        id="userInfo"
+                        class="card-body"
+                        style="text-align: center"
+                    >
+                        <h5 class="card-title">User Profile</h5>
+                        <div class="">
+                            <img
+                                src="https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"
+                                class="rounded-circle img-fluid"
+                                style="max-height: 100px"
+                                alt=""
+                            />
+                        </div>
                     </div>
                 </div>
             </div>
-        </nav>
-    </header>
-    <main>
-        <i class="fa fa-android" aria-hidden="true"></i>
-        <div class="container mt-5">
-            <!-- <h1 class="mb-4">Preguntas a la comunidad</h1> -->
+        </main>
 
-            <!-- Question Form -->
-            <div class="card mb-4 border-light shadow">
-                <div class="card-body" style="text-align: center;">
-                    <h5 class="card-title">User Profile</h5>
-                    <div class="">
-                        <img src="https://cdn.pixabay.com/photo/2016/04/22/04/57/graduation-1345143_1280.png"
-                            class="rounded-circle img-fluid" style="max-height: 100px;" alt="" />
-                    </div>
-                    <p><strong>Name: </strong> John Doe</p>
-                    <p><strong>Username: </strong> ElTunas</p>
-                    <p><strong>Email: </strong> johndoe@outlook.com</p>
-                    <p><strong>Ranking:</strong> John Doe <i class="fa-regular fa-star"></i><i class="fa fa-adn"
-                            aria-hidden="true"></i></p>
-                    <i class="fa-regular fa-star"></i>
-                    <p><strong>Profession: </strong> Student</p>
-                    <p><strong>Description:</strong> Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam porro eaque, modi tempora cupiditate ut ratione deleniti nihil iusto eius dolor. Hic atque impedit quisquam ipsa nulla perspiciatis similique ea est mollitia labore, maiores architecto at pariatur aliquid ipsum, reprehenderit, dicta porro. Facere cum, corrupti dolorum sed quo omnis aspernatur.</p>
-                </div>
-            </div>
-            </div>
-        </div>
-    </main>
+        <script>
+            function createParagraphsForObject(obj) {
+                const container = document.getElementById('userInfo');
 
-    <!-- Bootstrap JavaScript Libraries -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
-        integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
-        crossorigin="anonymous"></script>
+                for (const key in obj) {
+                    if (key === '_id') {
+                        continue;
+                    }
+                    const p = document.createElement('p');
+                    const strong = document.createElement('strong');
+                    strong.textContent = key + ': ';
+                    p.appendChild(strong);
+                    p.appendChild(document.createTextNode(obj[key]));
+                    container.appendChild(p);
+                }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
-        integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
-        crossorigin="anonymous"></script>
-</body>
+                return container;
+            }
 
+            function fetchUserData() {
+                fetch('http://localhost:3000/api/auth/user')
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('La solicitud no fue exitosa');
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        createParagraphsForObject(data);
+                    })
+                    .catch((error) => {
+                        console.error('Error en la solicitud:', error);
+                    });
+            }
+
+            // Call the function to fetch and render forum data when the page loads
+            document.addEventListener('DOMContentLoaded', function () {
+                fetchUserData();
+            });
+        </script>
+        <!-- Bootstrap JavaScript Libraries -->
+        <script
+            src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+            integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+            crossorigin="anonymous"
+        ></script>
+
+        <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.min.js"
+            integrity="sha384-7VPbUDkoPSGFnVtYi0QogXtr74QeVeeIs99Qfg5YCF+TidwNdjvaKZX19NZ/e6oz"
+            crossorigin="anonymous"
+        ></script>
+    </body>
 </html>
