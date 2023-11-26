@@ -25,7 +25,7 @@
                 style="background-color: white"
             >
                 <div class="container w-100">
-                    <a class="navbar-brand" href="#"
+                    <a class="navbar-brand" href="./index.html"
                         ><div class="fw-bold fs-3">codemaster</div></a
                     >
                     <button
@@ -47,24 +47,21 @@
                             <li class="nav-item">
                                 <a
                                     class="nav-link active fs-5 fw-light"
-                                    href="#"
+                                    href="./forum.html"
                                     aria-current="page"
                                     >Foro</a
-                                >
-                            </li>
-
-                            <li class="nav-item">
-                                <a
-                                    class="nav-link active fs-5 fw-light"
-                                    href="#"
-                                    >Nosotros</a
                                 >
                             </li>
                         </ul>
                         <div
                             class="d-flex my-3 align-items-center mx-sm-2 fs-5 fw-light"
                         >
-                            <i class="fa-solid fa-user me-1"> </i> Ingresar
+                            <a
+                                id="navUserText"
+                                href="./userProfile.html"
+                                style="text-decoration: none; color: black"
+                                ><strong>Ingresar</strong></a
+                            >
                         </div>
                     </div>
                 </div>
@@ -119,56 +116,133 @@
                 <div class="card border-light shadow-lg">
                     <div class="card-body">
                         <h5 class="card-title">Preguntas recientes</h5>
-                        <ul class="list-group">
-                            <li
-                                class="list-group-item border-light shadow-sm mb-3"
-                            >
-                                <h6 class="mb-0">
-                                    Cómo puedo declarar una variable global?
-                                </h6>
-                                <p class="mb-0">
-                                    Estoy tratando de crear una variable global
-                                    pero al momento de leer el valor es
-                                    undefined
-                                </p>
-                                <small class="text-muted"
-                                    >Creado por Daniel Rios</small
-                                >
-                            </li>
-                            <li
-                                class="list-group-item border-light shadow-sm mb-3"
-                            >
-                                <h6 class="mb-0">
-                                    Cómo configuraron prettier para proyectos de
-                                    JS?
-                                </h6>
-                                <p class="mb-0">
-                                    Recuerdo que en la clase lo mencionaron,
-                                    pero no recuerdo cómo se hace :(
-                                </p>
-                                <small class="text-muted"
-                                    >Creado por Mr Java</small
-                                >
-                            </li>
-                            <li
-                                class="list-group-item border-light shadow-sm mb-3"
-                            >
-                                <h6 class="mb-0">
-                                    Es lo mismo una variable y una constante?
-                                </h6>
-                                <p class="mb-0">
-                                    Ayuda por favor, no entiendo la diferencia
-                                </p>
-                                <small class="text-muted"
-                                    >Creado por Mark Zuckerberg</small
-                                >
-                            </li>
-                        </ul>
+                        <div class="container">
+                            <ul id="forumList" class="list-group"></ul>
+                        </div>
                     </div>
                 </div>
             </div>
         </main>
 
+        <script>
+            // Add an event listener to the question title
+            const questionTitle = document.querySelector('.cardTitle');
+            const questionCard = document.querySelector('.question-card');
+
+            questionTitle.addEventListener('click', function () {
+                // Get the question ID from the data attribute
+                const questionId =
+                    questionCard.getAttribute('data-question-id');
+
+                // Store the question ID in sessionStorage
+                sessionStorage.setItem('selectedQuestionId', questionId);
+
+                // You can perform other actions here, such as displaying details or navigating to another page.
+            });
+        </script>
+
+        <script>
+            // Function to render forum cards dynamically
+            function renderForumCards(data) {
+                const forumList = document.getElementById('forumList');
+
+                data.forEach((post) => {
+                    const card = document.createElement('li');
+                    card.id = `card-${post.id}`;
+                    card.classList.add(
+                        'list-group-item',
+                        'd-flex',
+                        'justify-content-between',
+                        'align-items-center'
+                    );
+
+                    const cardDiv = document.createElement('div');
+
+                    const cardTitleLink = document.createElement('a');
+                    cardTitleLink.id = 'cardTitle';
+                    cardTitleLink.classList.add('mb-0');
+                    cardTitleLink.textContent = post.title;
+                    cardTitleLink.href = `./question.html`; // Set the href to the question details page
+
+                    const cardTitle = document.createElement('h6');
+                    cardTitle.appendChild(cardTitleLink);
+
+                    cardTitle.addEventListener('click', async function () {
+                        await sessionStorage.setItem(
+                            'selectedQuestionId',
+                            post.id
+                        );
+                    });
+
+                    const cardDescription = document.createElement('p');
+                    cardDescription.id = 'cardDescription';
+                    cardDescription.classList.add('mb-0');
+                    cardDescription.textContent = post.description;
+
+                    const cardCreatedBy = document.createElement('small');
+                    cardCreatedBy.id = 'cardCreatedBy';
+                    cardCreatedBy.classList.add('text-muted');
+                    cardCreatedBy.textContent = `Creado por ${post.createdBy}`;
+
+                    cardDiv.appendChild(cardTitle);
+                    cardDiv.appendChild(cardDescription);
+                    cardDiv.appendChild(cardCreatedBy);
+
+                    const cardVotesDiv = document.createElement('div');
+
+                    const cardVotes = document.createElement('span');
+                    cardVotes.classList.add('text-muted', 'h5');
+                    cardVotes.textContent = `${post.votes} votos`;
+
+                    cardVotesDiv.appendChild(cardVotes);
+
+                    card.appendChild(cardDiv);
+                    card.appendChild(cardVotesDiv);
+
+                    forumList.appendChild(card);
+                });
+            }
+
+            function fetchForumData() {
+                const authToken = sessionStorage.getItem('token');
+                const requestOptions = {
+                    headers: {
+                        Authorization: `Bearer ${token}`,
+                    },
+                };
+
+                fetch('http://localhost:3000/api/forum', requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('La solicitud no fue exitosa');
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        renderForumCards(data);
+                    })
+                    .catch((error) => {
+                        console.error('Error en la solicitud:', error);
+                    });
+            }
+
+            // Call the function to fetch and render forum data when the page loads
+            document.addEventListener('DOMContentLoaded', function () {
+                fetchForumData();
+            });
+        </script>
+
+        <script>
+            const navUserText = document.getElementById('navUserText');
+            const token = sessionStorage.getItem('token');
+            if (token) {
+                navUserText.innerText = 'Perfil';
+                navUserText.href = './userProfile.html';
+            } else {
+                navUserText.innerText = 'Ingresar';
+                navUserText.href = './login.html';
+            }
+        </script>
         <!-- Bootstrap JavaScript Libraries -->
         <script
             src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
