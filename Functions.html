@@ -1,132 +1,168 @@
 <!DOCTYPE html>
 <html lang="en">
+    <head>
+        <title>Functions</title>
+        <!-- Required meta tags -->
+        <meta charset="utf-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
 
-<head>
-    <title>Functions</title>
-    <!-- Required meta tags -->
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <!-- Bootstrap CSS -->
+        <!-- Bootstrap CSS v5.2.1 -->
+        <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT"
+            crossorigin="anonymous"
+        />
+        <style>
+            .topnavbar {
+                width: 100%;
+            }
 
-    <!-- Bootstrap CSS -->
-    <!-- Bootstrap CSS v5.2.1 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous" />
-    <style>
-        .topnavbar {
-            width: 100%;
-        }
+            .navbarderecha {
+                width: 10%;
+                min-height: 100vh;
+                position: fixed;
+                margin-top: 78px;
+                left: 0;
+                background-color: #343a40;
+            }
 
-        .navbarderecha {
-            width: 10%;
-            min-height: 100vh;
-            position: fixed;
-            margin-top: 78px;
-            left: 0;
-            background-color: #343a40;
-        }
+            .navbar-nav .nav-link {
+                color: white;
+            }
 
-        .navbar-nav .nav-link {
-            color: white;
-        }
+            .nav-itemsss {
+                width: 100%;
+                text-align: center;
+                margin-bottom: 40px;
+                /* Espacio entre cada opción */
+            }
 
-        .nav-itemsss {
-            width: 100%;
-            text-align: center;
-            margin-bottom: 40px;
-            /* Espacio entre cada opción */
-        }
+            .cuerpo {
+                height: 1270px;
+                padding-top: 100px;
+                /* margin-left: 40px; */
+            }
 
-        .cuerpo {
-            height: 1270px;
-            padding-top: 100px;
-            /* margin-left: 40px; */
-        }
+            textarea {
+                width: 80%;
+                height: 200px;
+            }
 
-        textarea {
-            width: 80%;
-            height: 200px;
-        }
+            .btnSandBox {
+                margin-top: 10px;
+                cursor: pointer;
+            }
 
-        .btnSandBox {
-            margin-top: 10px;
-            cursor: pointer;
-        }
+            iframe {
+                width: 70%;
+                height: 300px;
+                /* border: 1px solid #ddd; */
+            }
 
-        iframe {
-            width: 70%;
-            height: 300px;
-            /* border: 1px solid #ddd; */
-        }
+            h2 {
+                text-align: center;
+            }
+        </style>
+    </head>
 
-        h2{
-            text-align: center;
-        }
-    </style>
-</head>
-
-<body>
-    <header>
-        <nav class="topnavbar navbar navbar-expand-sm shadow" style="background-color: white; position: fixed">
-            <div class="container w-100">
-                <a class="navbar-brand" href="./index.html">
-                    <div class="fw-bold fs-3">codemaster</div>
-                </a>
-                <button class="navbar-toggler d-lg-none" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-                    aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse w-100" id="collapsibleNavId">
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
-                            <a class="nav-link active fs-5 fw-light" href="#" aria-current="page">Foro</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link active fs-5 fw-light" href="#">Nosotros</a>
-                        </li>
-                    </ul>
-                    <div class="d-flex my-3 align-items-center mx-sm-2 fs-5 fw-light">
-                        <i class="fa-solid fa-user me-1"> </i>
-                        <a href="./userProfile.html" style="text-decoration: none; color: black;">Ingresar</a>
+    <body>
+        <header>
+            <nav
+                class="topnavbar navbar navbar-expand-sm shadow"
+                style="background-color: white; position: fixed"
+            >
+                <div class="container w-100">
+                    <a class="navbar-brand" href="./index.html">
+                        <div class="fw-bold fs-3">codemaster</div>
+                    </a>
+                    <button
+                        class="navbar-toggler d-lg-none"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#collapsibleNavId"
+                        aria-controls="collapsibleNavId"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation"
+                    >
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div
+                        class="collapse navbar-collapse w-100"
+                        id="collapsibleNavId"
+                    >
+                        <ul class="navbar-nav me-auto">
+                            <li class="nav-item">
+                                <a
+                                    class="nav-link active fs-5 fw-light"
+                                    href="./forum.html"
+                                    aria-current="page"
+                                    >Foro</a
+                                >
+                            </li>
+                        </ul>
+                        <div
+                            class="d-flex my-3 align-items-center mx-sm-2 fs-5 fw-light"
+                        >
+                            <i class="fa-solid fa-user me-1"> </i>
+                            <a
+                                id="navUserText"
+                                href="./userProfile.html"
+                                style="text-decoration: none; color: black"
+                                >Ingresar</a
+                            >
+                        </div>
                     </div>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <nav class="navbarderecha navbar navbar-dark bg-dark flex-column">
-            <ul class="navbar-nav">
-                <li class="nav-item nav-itemsss">
-                    <a class="nav-link" href="./BasicSintaxis.html">Basic Sintaxis</a>
-                </li>
-                <li class="nav-item nav-itemsss">
-                    <a class="nav-link" href="./Methods.html">Methods</a>
-                </li>
-                <li class="nav-item nav-itemsss">
-                    <a class="nav-link" href="./Functions.html">Functions</a>
-                </li>
-                <li class="nav-item nav-itemsss">
-                    <a class="nav-link" href="./Classes.html">Classes</a>
-                </li>
-                <li class="nav-item nav-itemsss">
-                    <a class="nav-link" href="#">JSON</a>
-                </li>
-            </ul>
-        </nav>
+            </nav>
+        </header>
+        <div class="container">
+            <nav class="navbarderecha navbar navbar-dark bg-dark flex-column">
+                <ul class="navbar-nav">
+                    <li class="nav-item nav-itemsss">
+                        <a class="nav-link" href="./BasicSintaxis.html"
+                            >Basic Sintaxis</a
+                        >
+                    </li>
+                    <li class="nav-item nav-itemsss">
+                        <a class="nav-link" href="./Methods.html">Methods</a>
+                    </li>
+                    <li class="nav-item nav-itemsss">
+                        <a class="nav-link" href="./Functions.html"
+                            >Functions</a
+                        >
+                    </li>
+                    <li class="nav-item nav-itemsss">
+                        <a class="nav-link" href="./Classes.html">Classes</a>
+                    </li>
+                    <li class="nav-item nav-itemsss">
+                        <a class="nav-link" href="#">JSON</a>
+                    </li>
+                </ul>
+            </nav>
 
-        <div class="cuerpo container ms-5 rounded">
-            <!--Contenedor del cuerpo-->
-            <div class="container rounded bg-light" style="width: 99%">
-                <!--A partir de aqui inicia el contenido del cuerpo-->
-                
-                <divs id="cuerpo" class="how-section1" style="width: 100%; height: 1150px;">
-                    <div class="container" id="cuerpo1">
-                    </div>
-                </divs>
-                <br><br><br>
-                <h4>Ejercicio</h4>
-                <p>Crea una funcion que se llame "Suma" el cual reciba dos argumentos "x" y "y" y regrese el resultado</p>
+            <div class="cuerpo container ms-5 rounded">
+                <!--Contenedor del cuerpo-->
+                <div class="container rounded bg-light" style="width: 99%">
+                    <!--A partir de aqui inicia el contenido del cuerpo-->
+
+                    <divs
+                        id="cuerpo"
+                        class="how-section1"
+                        style="width: 100%; height: 1150px"
+                    >
+                        <div class="container" id="cuerpo1"></div>
+                    </divs>
+                    <br /><br /><br />
+                    <h4>Ejercicio</h4>
+                    <p>
+                        Crea una funcion que se llame "Suma" el cual reciba dos
+                        argumentos "x" y "y" y regrese el resultado
+                    </p>
                     <iframe
                         src="./Exercises/Exercise1.html"
                         id="codeRunnerFrame"
@@ -134,7 +170,7 @@
                         height="500px"
                         frameborder="0"
                     ></iframe
-                    ><br/>
+                    ><br />
                     <button>
                         <a
                             href="./Exercises/Exercise1.html"
@@ -143,23 +179,38 @@
                             >Probar</a
                         >
                     </button>
+                </div>
             </div>
         </div>
-    </div>
-    <!-- Optional JavaScript -->
-    
-    <script src="./JS/loadInfoFunctions.js"></script>
+        <!-- Optional JavaScript -->
 
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-        crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-        crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-        crossorigin="anonymous"></script>
-</body>
-
+        <script src="./JS/loadInfoFunctions.js"></script>
+        <script>
+            const navUserText = document.getElementById('navUserText');
+            const token = sessionStorage.getItem('token');
+            if (token) {
+                navUserText.innerText = 'Perfil';
+                navUserText.href = './userProfile.html';
+            } else {
+                navUserText.innerText = 'Ingresar';
+                navUserText.href = './login.html';
+            }
+        </script>
+        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+        <script
+            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"
+        ></script>
+        <script
+            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"
+        ></script>
+    </body>
 </html>
