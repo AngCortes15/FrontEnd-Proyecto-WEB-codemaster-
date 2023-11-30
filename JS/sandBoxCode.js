@@ -20,6 +20,7 @@ async function runCode() {
                 console.log(xhr.responseText);
                 resolve(respuesta);
             } else {
+                alert("Mal sintaxis del codigo ");
                 console.log('Error en la solicitud. Código de estado: ' + xhr.status);
                 reject(new Error('Error en la solicitud. Código de estado: ' + xhr.status));
             }

@@ -145,72 +145,32 @@
                 </ul>
             </nav>
 
-            <div class="cuerpo container ms-5 rounded">
-                <!--Contenedor del cuerpo-->
-                <div class="container rounded bg-light" style="width: 99%">
-                    <!--A partir de aqui inicia el contenido del cuerpo-->
-
-                    <divs
-                        id="cuerpo"
-                        class="how-section1"
-                        style="width: 100%; height: 1150px"
-                    >
-                        <div class="container" id="cuerpo1"></div>
-                    </divs>
-                    <br /><br /><br />
-                    <h4>Ejercicio</h4>
-                    <p>
-                        Crea una funcion que se llame "Suma" el cual reciba dos
-                        argumentos "x" y "y" y regrese el resultado
-                    </p>
-                    <iframe
-                        src="./Exercises/Exercise1.html"
-                        id="codeRunnerFrame"
-                        width="100%"
-                        height="500px"
-                        frameborder="0"
-                    ></iframe
-                    ><br />
-                    <button>
-                        <a
-                            href="./Exercises/Exercise1.html"
-                            target="_blank"
-                            style="text-decoration: none; color: inherit"
-                            >Probar</a
-                        >
-                    </button>
-                </div>
+        <div class="cuerpo container ms-5 rounded">
+            <!--Contenedor del cuerpo-->
+            <div class="container rounded bg-light" style="width: 99%">
+                <!--A partir de aqui inicia el contenido del cuerpo-->
+                
+                <divs id="cuerpo" class="how-section1" style="width: 100%; height: 1150px;">
+                    <div class="container" id="cuerpo1">
+                    </div>
+                </divs>
             </div>
         </div>
-        <!-- Optional JavaScript -->
+    </div>
+    <!-- Optional JavaScript -->
+    
+    <script src="./JS/loadInfoFunctions.js"></script>
 
-        <script src="./JS/loadInfoFunctions.js"></script>
-        <script>
-            const navUserText = document.getElementById('navUserText');
-            const token = sessionStorage.getItem('token');
-            if (token) {
-                navUserText.innerText = 'Perfil';
-                navUserText.href = './userProfile.html';
-            } else {
-                navUserText.innerText = 'Ingresar';
-                navUserText.href = './login.html';
-            }
-        </script>
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script
-            src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
-            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-            crossorigin="anonymous"
-        ></script>
-        <script
-            src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-            crossorigin="anonymous"
-        ></script>
-    </body>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
 </html>
