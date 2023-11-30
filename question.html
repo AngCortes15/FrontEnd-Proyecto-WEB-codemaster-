@@ -74,10 +74,168 @@
         </main>
 
         <script>
+            async function submitComment(event) {
+                /**
+                 * id, description, createdBy, votes **/
+                event.preventDefault();
+                const questionComment =
+                    document.getElementById('questionComment').value;
+                const questionId = await sessionStorage.getItem(
+                    'selectedQuestionId'
+                );
+                const username = await sessionStorage.getItem('username');
+                const token = await sessionStorage.getItem('token');
+
+                // Prepare the data to send in the POST request
+                const postData = {
+                    description: questionComment,
+                    createdBy: username,
+                    votes: 0,
+                };
+
+                // Send a POST request to the specified endpoint
+                fetch(
+                    `http://localhost:3000/api/forum/question/${questionId}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            authorization: 'Bearer ' + token,
+                        },
+                        body: JSON.stringify(postData),
+                    }
+                )
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('La solicitud no fue exitosa');
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Handle the response data (e.g., show a success message)
+                        console.log('Question posted successfully:', data);
+                        alert('Pregunta enviada exitosamente');
+                        // Clean fields
+                        document.getElementById('questionComment').value = '';
+                        fetchQuestionData();
+                    })
+                    .catch((error) => {
+                        console.error('Error en la solicitud:', error);
+                        alert('Error al enviar la pregunta');
+                        // Handle the error (e.g., show an error message to the user)
+                        // You can customize this part to display an error message to the user
+                    });
+            }
+        </script>
+
+        <script>
+            async function voteUp(event, commentId) {
+                console.log('Voting up comment with id:', commentId);
+                /**
+                 *
+                 * id, description, createdBy, votes **/
+                event.preventDefault();
+                const questionId = await sessionStorage.getItem(
+                    'selectedQuestionId'
+                );
+
+                // Prepare the data to send in the POST request
+                const postData = {
+                    commentId,
+                    vote: 1,
+                };
+
+                // Send a POST request to the specified endpoint
+                fetch(
+                    `http://localhost:3000/api/forum/question/${questionId}`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            authorization:
+                                'Bearer ' +
+                                (await sessionStorage.getItem('token')),
+                        },
+                        body: JSON.stringify(postData),
+                    }
+                )
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('La solicitud no fue exitosa');
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Handle the response data (e.g., show a success message)
+                        // Clean fields
+                        fetchQuestionData();
+                    })
+                    .catch((error) => {
+                        console.error('Error en la solicitud:', error);
+                        alert('Error al enviar la pregunta');
+                        // Handle the error (e.g., show an error message to the user)
+                        // You can customize this part to display an error message to the user
+                    });
+            }
+
+            async function voteDown(event, commentId) {
+                console.log('Voting up comment with id:', commentId);
+                /**
+                 *
+                 * id, description, createdBy, votes **/
+                event.preventDefault();
+                const questionId = await sessionStorage.getItem(
+                    'selectedQuestionId'
+                );
+
+                // Prepare the data to send in the POST request
+                const postData = {
+                    commentId,
+                    vote: -1,
+                };
+
+                // Send a POST request to the specified endpoint
+                fetch(
+                    `http://localhost:3000/api/forum/question/${questionId}`,
+                    {
+                        method: 'PUT',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            authorization:
+                                'Bearer ' +
+                                (await sessionStorage.getItem('token')),
+                        },
+                        body: JSON.stringify(postData),
+                    }
+                )
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('La solicitud no fue exitosa');
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Handle the response data (e.g., show a success message)
+                        // Clean fields
+                        fetchQuestionData();
+                    })
+                    .catch((error) => {
+                        console.error('Error en la solicitud:', error);
+                        alert('Error al enviar la pregunta');
+                        // Handle the error (e.g., show an error message to the user)
+                        // You can customize this part to display an error message to the user
+                    });
+            }
+        </script>
+
+        <script>
             // Function to render question details card with comments
             function renderQuestionDetails(data) {
                 const questionContainer =
                     document.getElementById('questionContainer');
+
+                // Clean container
+                questionContainer.innerHTML = '';
 
                 const questionCard = document.createElement('div');
                 questionCard.classList.add(
@@ -103,7 +261,6 @@
 
                 const votesSpan = document.createElement('span');
                 votesSpan.classList.add('text-muted', 'h5');
-                votesSpan.textContent = data.votes + ' votos';
 
                 titleDiv.appendChild(cardTitle);
                 titleDiv.appendChild(votesSpan);
@@ -122,6 +279,7 @@
                 );
 
                 const input = document.createElement('input');
+                input.id = 'questionComment';
                 input.classList.add('form-control', 'w-80', 'me-2');
                 input.type = 'text';
                 input.placeholder = 'Escribe tu respuesta';
@@ -131,6 +289,7 @@
                 button.style = 'background-color: #d1cfcf;border-color: white;';
                 button.type = 'submit';
                 button.textContent = 'Enviar';
+                button.setAttribute('onClick', 'submitComment(event)');
 
                 form.appendChild(input);
                 form.appendChild(button);
@@ -216,7 +375,12 @@
                     upvoteButton.classList.add('btn', 'btn-primary');
                     upvoteButton.style =
                         'background-color: #d1cfcf;border-color: white;';
-                    upvoteButton.type = 'submit';
+                    upvoteButton.type = 'button';
+                    console.log(comment);
+                    upvoteButton.setAttribute(
+                        'onClick',
+                        `voteUp(event, '${comment._id}')`
+                    );
                     // upvoteButton.textContent = 'Votar';
                     // Add up icon
                     const upIcon = document.createElement('i');
@@ -227,7 +391,11 @@
                     downvoteButton.classList.add('btn', 'btn-primary');
                     downvoteButton.style =
                         'background-color: #d1cfcf;border-color: white;';
-                    downvoteButton.type = 'submit';
+                    downvoteButton.type = 'button';
+                    downvoteButton.setAttribute(
+                        'onClick',
+                        `voteDown(event, '${comment._id}')`
+                    );
                     // downvoteButton.textContent = 'Votar';
 
                     // Add down icon
@@ -254,8 +422,20 @@
                 answersCardBody.appendChild(answersList);
             }
             // Function to fetch question data from the API
-            function fetchQuestionData() {
-                fetch('http://localhost:3000/api/forum/question/1')
+            async function fetchQuestionData() {
+                const questionId = await sessionStorage.getItem(
+                    'selectedQuestionId'
+                );
+                const token = await sessionStorage.getItem('token');
+                console.log(questionId);
+                fetch(
+                    `http://localhost:3000/api/forum/question/${questionId}`,
+                    {
+                        headers: {
+                            authorization: 'Bearer ' + token,
+                        },
+                    }
+                )
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error('La solicitud no fue exitosa');
@@ -263,6 +443,7 @@
                         return response.json();
                     })
                     .then((data) => {
+                        console.log(data);
                         renderQuestionDetails(data);
                     })
                     .catch((error) => {

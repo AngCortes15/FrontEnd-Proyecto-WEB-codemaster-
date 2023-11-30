@@ -59,6 +59,17 @@
                                 >
                             </li>
                         </ul>
+                        <div
+                            class="d-flex my-3 align-items-center mx-sm-2 fs-5 fw-light"
+                        >
+                            <i class="fa-solid fa-user me-1"> </i>
+                            <a
+                                id="closeSession"
+                                onClick="endSession(event)"
+                                style="text-decoration: none; color: black"
+                                ><strong>Cerrar sesión</strong></a
+                            >
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -86,17 +97,116 @@
                         </div>
                     </div>
                 </div>
+                <div class="card mb-4 border-light shadow">
+                    <div
+                        id="userInfo"
+                        class="card-body"
+                        style="text-align: center"
+                    >
+                        Nombre
+                        <input
+                            id="name"
+                            type="text"
+                            class="form-control mt-1 mb-2"
+                        />
+                        Apellido
+                        <input
+                            id="lastName"
+                            type="text"
+                            class="form-control mt-1 mb-2"
+                        />
+                        Email
+                        <input
+                            id="email"
+                            type="email"
+                            class="form-control mt-1 mb-2"
+                        />
+                        <button
+                            onclick="updateUser(event)"
+                            class="btn w-100 mt-3"
+                            style="background-color: #d1cfcf; color: white"
+                        >
+                            Actualizar
+                        </button>
+                    </div>
+                </div>
             </div>
         </main>
+
+        <script>
+            async function updateUser(event) {
+                /**
+                 * id, description, createdBy, votes **/
+                event.preventDefault();
+                const name = document.getElementById('name').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const username = sessionStorage.getItem('username');
+
+                if (!name || !lastName || !email) {
+                    alert('Por favor ingrese todos los campos');
+                    return;
+                }
+
+                // Prepare the data to send in the POST request
+                const postData = {
+                    username,
+                    name,
+                    lastName,
+                    email,
+                };
+
+                // Send a POST request to the specified endpoint
+                fetch('http://localhost:3000/api/auth/user', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        authorization:
+                            'Bearer ' + (await sessionStorage.getItem('token')),
+                    },
+                    body: JSON.stringify(postData),
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('La solicitud no fue exitosa');
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Clear the form
+                        document.getElementById('name').value = '';
+                        document.getElementById('lastName').value = '';
+                        document.getElementById('email').value = '';
+                        fetchUserData();
+                    })
+                    .catch((error) => {
+                        console.error('Error en la solicitud:', error);
+                        alert('Error al enviar la pregunta');
+                        // Handle the error (e.g., show an error message to the user)
+                        // You can customize this part to display an error message to the user
+                    });
+            }
+
+            function endSession(event) {
+                event.preventDefault();
+                sessionStorage.removeItem('token');
+                sessionStorage.removeItem('username');
+                window.location.href = './index.html';
+            }
+        </script>
 
         <script>
             function createParagraphsForObject(obj) {
                 const container = document.getElementById('userInfo');
 
+                // Clear the container
+                container.innerHTML = '';
+
                 for (const key in obj) {
-                    if (key === '_id') {
+                    if (key === '_id' || key === 'password') {
                         continue;
                     }
+
                     const p = document.createElement('p');
                     const strong = document.createElement('strong');
                     strong.textContent = key + ': ';
@@ -108,8 +218,13 @@
                 return container;
             }
 
-            function fetchUserData() {
-                fetch('http://localhost:3000/api/auth/user')
+            async function fetchUserData() {
+                const token = await sessionStorage.getItem('token');
+                fetch('http://localhost:3000/api/auth/user', {
+                    headers: {
+                        authorization: 'Bearer ' + token,
+                    },
+                })
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error('La solicitud no fue exitosa');
