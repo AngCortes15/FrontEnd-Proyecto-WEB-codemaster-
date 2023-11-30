@@ -30,7 +30,7 @@ ${data[i].textArea}
                     </textarea>
                     <br>
                     <a class="btn btn-secondary" href="${data[i].btnURL}" role="button"  target="_blank">Try</a>
-                    <br>`;
+                    <br><br><br>`;
                 }
                 cuerpo.appendChild(cuerpo1);
 
