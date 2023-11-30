@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Run example</title>
+    <title>Classes Exercice 2</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -58,14 +58,37 @@
 
 <body>
         <div id="editor-container">
-            <textarea id="code" placeholder="Write your code here...">console.log("Hola Mundo")</textarea>
+            <textarea id="code" placeholder="Write your code here...">
+class Animal {
+    constructor(name, sound) {
+        this.name = name;
+        this.sound = sound;
+    }
+
+    makeSound() {
+        console.log(this.sound);
+    }
+}
+
+class Bird extends Animal {
+    fly() {
+        console.log('Volando...');
+    }
+}
+
+let ave = new Bird('Ave', 'Pio');
+ave.makeSound();
+ave.fly();
+// Resultado: Pio
+// Resultado: Volando...
+            </textarea>
             <button onclick="otraFuncion()">Run example</button>
         </div>
         <div id="result-container">
             <iframe id="result"></iframe>
         </div>
 
-    <script src="./JS/sandBoxCode.js"></script>
+    <script src="../JS/sandBoxCode.js"></script>
     <!-- <script src="./JS/pruebas.js"></script> -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->

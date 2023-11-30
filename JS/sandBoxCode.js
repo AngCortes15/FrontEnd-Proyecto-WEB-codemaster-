@@ -1,57 +1,59 @@
-function runCode() {
-    const code = document.getElementById('code').value;
-    const iframe = document.getElementById('result');
-    const consoleContainer = document.createElement('div');
-    document.body.appendChild(consoleContainer);
+async function runCode() {
+    return new Promise(function (resolve, reject) {
+        // ... el resto de tu código aquí ...
+        let code = document.getElementById('code').value;
 
-    let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
 
-    // Sobrescribir console.log en el contexto del iframe
-    iframe.contentWindow.console.log = (...args) => {
-        const logMessage = args.map(arg => JSON.stringify(arg)).join(' ');
-        consoleContainer.innerHTML += `<p>${logMessage}</p>`;
-    };
 
-    try {
-        // Crear un documento en blanco dentro del iframe
-        iframeDocument.open();
-        iframeDocument.write('<script>' + code + '</script>');
-        iframeDocument.close();
-    } catch (error) {
-        console.error('Error al ejecutar el código:', error);
-    }
-}
+        let xhr = new XMLHttpRequest();
+        let url = "http://localhost:3000/api/run-code";
 
-// Esperar un tiempo después de ejecutar el código antes de obtener la respuesta
-function esperarRespuesta() {
-    const iframe = document.getElementById('result');
-    const consoleContainer = document.createElement('div');
-    document.body.appendChild(consoleContainer);
+        xhr.open("POST", url, true);
+        xhr.setRequestHeader("Content-Type", "application/json");
 
-    const iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+        xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                console.log(xhr.responseText);
 
-    return new Promise(resolve => {
-        // Observar el contenido del iframe para detectar cambios
-        const observer = new MutationObserver(mutations => {
-            mutations.forEach(mutation => {
-                if (mutation.type === 'childList') {
-                    // Contenido del iframe ha cambiado, resuelve la promesa
-                    resolve();
-                }
-            });
-        });
+                let respuesta = (xhr.responseText);
+                console.log(respuesta);
+                console.log(xhr.responseText);
+                resolve(respuesta);
+            } else {
+                console.log('Error en la solicitud. Código de estado: ' + xhr.status);
+                reject(new Error('Error en la solicitud. Código de estado: ' + xhr.status));
+            }
+        };
 
-        // Configurar la observación para detectar cambios en el contenido del iframe
-        observer.observe(iframeDocument.body, { childList: true });
+        xhr.onerror = () => {
+            console.log('Error de red al hacer la solicitud.');
+            reject(new Error('Error de red al hacer la solicitud.'));
+        };
 
-        // Detener la observación después de un tiempo (puedes ajustar este tiempo según sea necesario)
-        setTimeout(() => observer.disconnect(), 5000);
+        xhr.send(JSON.stringify({ codigo: code }));
+
+        
     });
 }
 
-// Llamar a la función esperarRespuesta después de ejecutar el código
-// runCode();
-esperarRespuesta().then(() => {
-    console.log('Respuesta lista');
-    // Aquí puedes realizar acciones adicionales después de que la respuesta esté lista
-});
+async function otraFuncion() {
+    try {
+        let respuesta = await runCode();
+        console.log('Respuesta de runCode:', respuesta);
+        // Aquí puedes realizar acciones adicionales después de que runCode haya terminado
+
+        let iframe = document.getElementById('result');
+        let iframeDocument = iframe.contentDocument || iframe.contentWindow.document;
+
+        // Crear un documento en blanco dentro del iframe
+        iframeDocument.open();
+        iframeDocument.write(' ');
+        iframeDocument.write(respuesta);
+        iframeDocument.close();
+    } catch (error) {
+        console.error('Error al ejecutar runCode:', error);
+    }
+}
+
+// Llamar a otraFuncion
+// otraFuncion();

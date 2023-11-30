@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Run example</title>
+    <title>Classes Exercice 3</title>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -58,14 +58,29 @@
 
 <body>
         <div id="editor-container">
-            <textarea id="code" placeholder="Write your code here...">console.log("Hola Mundo")</textarea>
+            <textarea id="code" placeholder="Write your code here...">
+class MathOperations {
+    static sumar(a, b) {
+        return a + b;
+    }
+
+    static restar(a, b) {
+        return a - b;
+    }
+}
+
+console.log(MathOperations.sumar(5, 3));
+console.log(MathOperations.restar(8, 2));
+// Resultado: 8
+// Resultado: 6
+            </textarea>
             <button onclick="otraFuncion()">Run example</button>
         </div>
         <div id="result-container">
             <iframe id="result"></iframe>
         </div>
 
-    <script src="./JS/sandBoxCode.js"></script>
+    <script src="../JS/sandBoxCode.js"></script>
     <!-- <script src="./JS/pruebas.js"></script> -->
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
