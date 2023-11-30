@@ -99,8 +99,9 @@
                                 ></textarea>
                             </div>
                             <button
-                                type="submit"
+                                type="button"
                                 class="btn btn-primary"
+                                onClick="submitQuestion(event)"
                                 style="
                                     background-color: #d1cfcf;
                                     border-color: white;
@@ -125,6 +126,56 @@
         </main>
 
         <script>
+            async function submitQuestion(event) {
+                event.preventDefault();
+                const questionTitle =
+                    document.getElementById('questionTitle').value;
+                const questionContent =
+                    document.getElementById('questionContent').value;
+                const username = await sessionStorage.getItem('username');
+
+                // Prepare the data to send in the POST request
+                const postData = {
+                    title: questionTitle,
+                    description: questionContent,
+                    createdBy: username,
+                    votes: 0,
+                    comments: [],
+                };
+
+                // Send a POST request to the specified endpoint
+                fetch('http://localhost:3000/api/forum/question', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(postData),
+                })
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error('La solicitud no fue exitosa');
+                        }
+                        return response.json();
+                    })
+                    .then((data) => {
+                        // Handle the response data (e.g., show a success message)
+                        console.log('Question posted successfully:', data);
+                        alert('Pregunta enviada exitosamente');
+                        // Clean fields
+                        document.getElementById('questionTitle').value = '';
+                        document.getElementById('questionContent').value = '';
+                        fetchForumData();
+                    })
+                    .catch((error) => {
+                        console.error('Error en la solicitud:', error);
+                        alert('Error al enviar la pregunta');
+                        // Handle the error (e.g., show an error message to the user)
+                        // You can customize this part to display an error message to the user
+                    });
+            }
+        </script>
+
+        <script>
             // Add an event listener to the question title
             const questionTitle = document.querySelector('.cardTitle');
             const questionCard = document.querySelector('.question-card');
@@ -147,8 +198,9 @@
                 const forumList = document.getElementById('forumList');
 
                 data.forEach((post) => {
+                    console.log(post._id);
                     const card = document.createElement('li');
-                    card.id = `card-${post.id}`;
+                    card.id = `card-${post._id}`;
                     card.classList.add(
                         'list-group-item',
                         'd-flex',
@@ -170,7 +222,7 @@
                     cardTitle.addEventListener('click', async function () {
                         await sessionStorage.setItem(
                             'selectedQuestionId',
-                            post.id
+                            post._id
                         );
                     });
 
@@ -192,7 +244,6 @@
 
                     const cardVotes = document.createElement('span');
                     cardVotes.classList.add('text-muted', 'h5');
-                    cardVotes.textContent = `${post.votes} votos`;
 
                     cardVotesDiv.appendChild(cardVotes);
 

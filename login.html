@@ -143,6 +143,11 @@
                 const username = document.getElementById('username').value;
                 const password = document.getElementById('password').value;
 
+                if (!username || !password) {
+                    alert('Por favor llena todos los campos');
+                    return;
+                }
+
                 // Codifica el usuario y la contraseña en formato Basic
                 const base64Credentials = btoa(`${username}:${password}`);
 
@@ -165,7 +170,9 @@
                     })
                     .then((data) => {
                         // Save token in sesion storage
+                        console.log(data);
                         sessionStorage.setItem('token', data.token);
+                        sessionStorage.setItem('username', data.username);
 
                         // Redirect to home
                         window.location.href = './index.html';
@@ -183,6 +190,11 @@
                 const password = document.getElementById('rpassword').value;
                 const name = document.getElementById('name').value;
                 const lastName = document.getElementById('lastName').value;
+
+                if (!username || !password || !name || !lastName) {
+                    alert('Por favor llena todos los campos');
+                    return;
+                }
 
                 const email = document.getElementById('email').value;
                 const body = {
@@ -218,7 +230,7 @@
                     .then((data) => {
                         // Save token in sesion storage
                         sessionStorage.setItem('token', data.token);
-                        sessionStorage.setItem('user', data.createdUser);
+                        sessionStorage.setItem('username', username);
 
                         // Redirect to home
                         window.location.href = './index.html';
