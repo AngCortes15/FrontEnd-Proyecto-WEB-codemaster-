@@ -59,7 +59,7 @@
             }
 
             iframe {
-                width: 70%; 
+                width: 70%;
                 height: 300px;
                 /* border: 1px solid #ddd; */
             }
@@ -94,6 +94,7 @@
                         <ul class="navbar-nav me-auto">
                             <li class="nav-item">
                                 <a
+                                    id="navForo"
                                     class="nav-link active fs-5 fw-light"
                                     href="./forum.html"
                                     aria-current="page"
@@ -120,13 +121,17 @@
             <nav class="navbarderecha navbar navbar-dark bg-dark flex-column">
                 <ul class="navbar-nav">
                     <li class="nav-item nav-itemsss">
-                        <a class="nav-link" href="./BasicSintaxis.html">Basic Sintaxis</a>
+                        <a class="nav-link" href="./BasicSintaxis.html"
+                            >Basic Sintaxis</a
+                        >
                     </li>
                     <li class="nav-item nav-itemsss">
                         <a class="nav-link" href="./Methods.html">Methods</a>
                     </li>
                     <li class="nav-item nav-itemsss">
-                        <a class="nav-link" href="./Functions.html">Functions</a>
+                        <a class="nav-link" href="./Functions.html"
+                            >Functions</a
+                        >
                     </li>
                     <li class="nav-item nav-itemsss">
                         <a class="nav-link" href="./Classes.html">Classes</a>
@@ -165,38 +170,23 @@
                         creativity and innovation in the digital world.
                     </p>
                     <div id="cuerpo">
-                        <div id="cuerpo1" class="how-section1">
-                        </div>
+                        <div id="cuerpo1" class="how-section1"></div>
                     </div>
-                    <h4>Code example</h4>
-                    <iframe
-                        src="./executeCode.html"
-                        id="codeRunnerFrame"
-                        width="100%"
-                        height="500px"
-                        frameborder="0"
-                    ></iframe
-                    ><br />
-                    <button>
-                        <a
-                            href="./executeCode.html"
-                            target="_blank"
-                            style="text-decoration: none; color: inherit"
-                            >Probar</a
-                        >
-                    </button>
                 </div>
             </div>
         </div>
         <script>
             const navUserText = document.getElementById('navUserText');
+            const foro = document.getElementById('navForo');
             const token = sessionStorage.getItem('token');
             if (token) {
                 navUserText.innerText = 'Perfil';
                 navUserText.href = './userProfile.html';
+                foro.style.display = 'block';
             } else {
                 navUserText.innerText = 'Ingresar';
                 navUserText.href = './login.html';
+                foro.style.display = 'none';
             }
         </script>
         <!-- Optional JavaScript -->

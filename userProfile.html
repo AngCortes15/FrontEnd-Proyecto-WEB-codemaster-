@@ -59,6 +59,17 @@
                                 >
                             </li>
                         </ul>
+                        <div
+                            class="d-flex my-3 align-items-center mx-sm-2 fs-5 fw-light"
+                        >
+                            <i class="fa-solid fa-user me-1"> </i>
+                            <a
+                                id="closeSession"
+                                onClick="endSession(event)"
+                                style="text-decoration: none; color: black"
+                                ><strong>Cerrar sesión</strong></a
+                            >
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -174,6 +185,13 @@
                         // Handle the error (e.g., show an error message to the user)
                         // You can customize this part to display an error message to the user
                     });
+            }
+
+            function endSession(event) {
+                event.preventDefault();
+                sessionStorage.removeItem('token');
+                sessionStorage.removeItem('username');
+                window.location.href = './index.html';
             }
         </script>
 

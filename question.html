@@ -84,6 +84,7 @@
                     'selectedQuestionId'
                 );
                 const username = await sessionStorage.getItem('username');
+                const token = await sessionStorage.getItem('token');
 
                 // Prepare the data to send in the POST request
                 const postData = {
@@ -93,13 +94,17 @@
                 };
 
                 // Send a POST request to the specified endpoint
-                fetch('http://localhost:3000/api/forum/question', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(postData),
-                })
+                fetch(
+                    `http://localhost:3000/api/forum/question/${questionId}`,
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            authorization: 'Bearer ' + token,
+                        },
+                        body: JSON.stringify(postData),
+                    }
+                )
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error('La solicitud no fue exitosa');
@@ -111,9 +116,8 @@
                         console.log('Question posted successfully:', data);
                         alert('Pregunta enviada exitosamente');
                         // Clean fields
-                        document.getElementById('questionTitle').value = '';
-                        document.getElementById('questionContent').value = '';
-                        fetchForumData();
+                        document.getElementById('questionComment').value = '';
+                        fetchQuestionData();
                     })
                     .catch((error) => {
                         console.error('Error en la solicitud:', error);
@@ -285,7 +289,7 @@
                 button.style = 'background-color: #d1cfcf;border-color: white;';
                 button.type = 'submit';
                 button.textContent = 'Enviar';
-                button.onclick = 'submitComment(event)';
+                button.setAttribute('onClick', 'submitComment(event)');
 
                 form.appendChild(input);
                 form.appendChild(button);
@@ -422,14 +426,13 @@
                 const questionId = await sessionStorage.getItem(
                     'selectedQuestionId'
                 );
+                const token = await sessionStorage.getItem('token');
                 console.log(questionId);
                 fetch(
                     `http://localhost:3000/api/forum/question/${questionId}`,
                     {
                         headers: {
-                            authorization:
-                                'Bearer ' +
-                                (await sessionStorage.getItem('token')),
+                            authorization: 'Bearer ' + token,
                         },
                     }
                 )
@@ -440,6 +443,7 @@
                         return response.json();
                     })
                     .then((data) => {
+                        console.log(data);
                         renderQuestionDetails(data);
                     })
                     .catch((error) => {
